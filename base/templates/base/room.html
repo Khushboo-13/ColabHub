@@ -1,7 +1,26 @@
 {% extends 'base/main.html' %} 
 
-{% load static %} 
+{% load static %}
 {% block content %}
+
+<style type="text/css" media="screen">
+
+  .editor-container{
+    width: 900px;
+    height: 540px;
+    margin: 20px auto;
+    position: relative;
+  }
+  #firepad { 
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+  }
+</style>
+
+
 <main>
   <section id="room-name-wrapper">
     <p>Room Name: <span id="room-name"></span></p>
@@ -24,10 +43,94 @@
     </div>
 
   </section>
-    
+
+
+  <!-- <div id="code-editor"></div> -->
+
+  <div class="editor-container" onload = "codeEditorFunction()">
+    <div id="firepad"> 
+
+    </div> 
+  </div>
+  
+  <!-- <div class="editor-container">
+    <div id="editor">
+      //Write code here
+    </div>
+  </div> -->
+
+  
+  <!-- NOT USEFUL CODE -->
+<!-- <script src="/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script> -->
+
   
 
 </main>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-database.js"></script>
+
+  <!-- CodeMirror -->
+  <script  type = "text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"></script>
+  <script  type = "text/javascript" src="  https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/javascript/javascript.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css"/>
+  <link rel="stylesheet" href="  https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/dracula.min.css"/>
+  
+  <!-- Firepad -->
+  <link rel="stylesheet" href="https://firepad.io/releases/v1.5.10/firepad.css" />
+  <script src="https://firepad.io/releases/v1.5.10/firepad.min.js"></script>
+
+<!-- 
+<script>
+  
+    // Initialize the Firebase SDK.
+    firebase.initializeApp({
+      apiKey: 'AIzaSyDtz7Sro_WRcXsd1JNByOVz-gbDJkPCsak',
+      databaseURL: 'https://collabhub-ab2b3-default-rtdb.firebaseio.com'
+    });
+
+    // Get Firebase Database reference.
+    var firepadRef = firebase.database().ref();
+
+    const urlpatterns = new URLSearchParams(window.location.search)
+    const roomId = urlpatterns.get("id")
+
+    if(roomId) {
+      firepadRef = firepadRef.child(roomId)
+    } else {
+      firepadRef = firepadRef.push()
+      window.history.replaceState(null, "Collab Hub", "?id="+firepadRef.key)
+    }
+    // Create CodeMirror (with lineWrapping on).
+    var codeMirror = CodeMirror(document.getElementById('firepad'), { 
+    lineWrapping: true , 
+    lineNumbers: true,
+    theme: 'dracula',
+    mode: 'javascript'});
+    codeMirror.setSize("100%", "100%")
+    // Create Firepad (with rich text toolbar and shortcuts enabled).
+    var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror,
+        { defaultText: 'Hello, World!' });
+
+</script> -->
+
+<!-- -----------------ACE.JS CODE--------------------- -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.19.0/ace.js" ></script>
+<script>
+  let editor = document.querySelector("#editor")
+  ace.edit(editor, {
+    theme: 'ace/theme/cobalt'
+  })
+  // var editor = ace.edit("editor");
+  // editor.setTheme("ace/theme/monokai");
+  // editor.session.setMode("ace/mode/javascript");
+</script> -->
+<!-- ----------------ACE.JS CODE END------------------------------------ -->
+
+
+
 <script type = "text/javascript" src = "{% static 'assets/AgoraRTC_N-4.17.2.js' %}"></script>
 <script type = "text/javascript" src = {% static 'js/streams.js' %}></script>
 {% endblock content %}
