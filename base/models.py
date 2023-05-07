@@ -9,3 +9,10 @@ class RoomMember(models.Model):
 
     def __str__(self):
         return self.name
+    
+class Room_Code(models.Model):
+    room_name = models.CharField(max_length=200)
+    code_token = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.room_name

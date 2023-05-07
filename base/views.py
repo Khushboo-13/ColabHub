@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from django.http import JsonResponse 
 from agora_token_builder import RtcTokenBuilder
+from django.core.exceptions import ObjectDoesNotExist
 import random
 import time
 import json
 
-from .models import RoomMember
+from .models import RoomMember, Room_Code
 
 from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
@@ -28,6 +29,21 @@ def lobby(request):
 
 def room(request):
     return render(request, 'base/room.html')
+
+def joinCodeRoom(request):
+    room_name = request.GET.get('room_name')
+    new_code = request.GET.get('token_gen')
+
+    try:
+        codeRoom = Room_Code.objects.get(room_name = room_name)
+        code = codeRoom.code_token
+    except ObjectDoesNotExist:
+        code = new_code 
+        Room_Code.objects.create(room_name = room_name, code_token = code)
+
+    return JsonResponse({'code':code}, safe=False)
+    
+
 
 @csrf_exempt
 def createMember(request):

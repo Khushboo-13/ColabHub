@@ -137,7 +137,7 @@ let deleteMember = async () => {
 
 ////////// CODE EDITOR CODE /////////////////
 
-let codeEditorFunction = () => {
+let codeEditorFunction = async () => {
 
     // Initialize the Firebase SDK.
     firebase.initializeApp({
@@ -154,8 +154,14 @@ let codeEditorFunction = () => {
     if(roomId) {
       firepadRef = firepadRef.child(roomId)
     } else {
-      firepadRef = firepadRef.push()
-      window.history.replaceState(null, "Collab Hub", "?id="+firepadRef.key)
+        firepadRef = firepadRef.push()
+        let response = await fetch(`/join_code_room/?room_name=${CHANNEL}&token_gen=${firepadRef.key}`)
+        let code_token = await response.json()
+
+
+
+    //   firepadRef = firepadRef.push()
+      window.history.replaceState(null, "Collab Hub", "?id="+code_token.code)
     }
     // Create CodeMirror (with lineWrapping on).
     var codeMirror = CodeMirror(document.getElementById('firepad'), { 
