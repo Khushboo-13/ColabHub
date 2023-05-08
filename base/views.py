@@ -30,19 +30,46 @@ def lobby(request):
 def room(request):
     return render(request, 'base/room.html')
 
+# def joinCodeRoom(request):
+#     room_name = request.GET.get('room_name')
+#     new_code = request.GET.get('token_gen')
+
+#     try:
+#         codeRoom = Room_Code.objects.get(room_name = room_name)
+#         code = codeRoom.code_token
+#     except ObjectDoesNotExist:
+#         code = new_code 
+#         Room_Code.objects.create(room_name = room_name, code_token = code)
+
+#     return JsonResponse({'code':code}, safe=False)
+
+
 def joinCodeRoom(request):
     room_name = request.GET.get('room_name')
     new_code = request.GET.get('token_gen')
+
+    # try:
+    #     codeRoom = Room_Code.objects.get(room_name = room_name)
+    #     code = codeRoom.code_token
+    # except ObjectDoesNotExist:
+    #     code = new_code 
+    Room_Code.objects.create(room_name = room_name, code_token = new_code)
+
+    return JsonResponse({'code':new_code}, safe=False)
+
+
+
+def checkRoom(request):
+    room_name = request.GET.get('room_name')
 
     try:
         codeRoom = Room_Code.objects.get(room_name = room_name)
         code = codeRoom.code_token
     except ObjectDoesNotExist:
-        code = new_code 
-        Room_Code.objects.create(room_name = room_name, code_token = code)
+        code = "NONE"
+    return JsonResponse({'room':code}, safe=False)
 
-    return JsonResponse({'code':code}, safe=False)
-    
+
 
 
 @csrf_exempt

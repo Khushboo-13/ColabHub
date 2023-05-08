@@ -148,16 +148,29 @@ let codeEditorFunction = async () => {
     // Get Firebase Database reference.
     var firepadRef = firebase.database().ref();
 
+    // check if room is present or not
+    let response_room = await fetch(`/check_room/?room_name=${CHANNEL}`)
+    let room = await response_room.json()
+    let code_token = room.room
+    // console.log("TOKEN PRESENT OR NOT: ", code_token)
+    if(code_token !== "NONE")
+    {
+        window.history.replaceState(null, "Collab Hub", "?id="+code_token)
+    }
+
     const urlpatterns = new URLSearchParams(window.location.search)
     const roomId = urlpatterns.get("id")
 
     if(roomId) {
       firepadRef = firepadRef.child(roomId)
     } else {
+        // GOING TO ELSE IF ROOM IS NOT PRESENT
+        // console.log("key before: ", firepadRef.key)
         firepadRef = firepadRef.push()
+        // console.log("key after: ", firepadRef.key)
         let response = await fetch(`/join_code_room/?room_name=${CHANNEL}&token_gen=${firepadRef.key}`)
         let code_token = await response.json()
-
+        // firepadRef = firepadRef.child(code_token.code)
 
 
     //   firepadRef = firepadRef.push()
@@ -216,11 +229,9 @@ let codeEditorFunction = async () => {
 // }
 ///////// END CODE EDITOR CODE ///////////////
 
-
 joinAndDisplayLocalStream()
 codeEditorFunction()
 // InitEditor()
-
 
 // window.addEventListener('code',InitEditor)
 

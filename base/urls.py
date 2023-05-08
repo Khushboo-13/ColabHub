@@ -9,4 +9,5 @@ urlpatterns = [
     path('get_member/', views.getMember),
     path('delete_member/', views.deleteMember),
     path('join_code_room/', views.joinCodeRoom),
+    path('check_room/', views.checkRoom),
 ]
