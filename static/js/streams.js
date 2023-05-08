@@ -15,6 +15,7 @@ let remoteUsers = {}
 let joinAndDisplayLocalStream = async () => {
     document.getElementById('room-name').innerText = CHANNEL
 
+
     client.on('user-published', handleUserJoined)
     client.on('user-left', handleUserLeft)
 
@@ -29,13 +30,32 @@ let joinAndDisplayLocalStream = async () => {
 
     let member = await createMember()
 
+
+
     let player = `<div  class="video-container" id="user-container-${UID}">
                      <div class="video-player" id="user-${UID}"></div>
                      <div class="username-wrapper"><span class="user-name">${member.name}</span></div>
                   </div>`
     
     document.getElementById('video-streams').insertAdjacentHTML('beforeend', player)
+
+   
     localTracks[1].play(`user-${UID}`)
+
+    // var container = document.createElement('div');
+    // container.setAttribute('class', 'github-card');
+    // container.setAttribute('data-github', member.name);
+    // container.setAttribute('data-width', '400');
+    // container.setAttribute('data-height', '200');
+  
+    // // Add the container div to the HTML document
+    // document.body.appendChild(container);
+
+    user_github = `<div class="github-card" data-github=${member.name} data-width="400" data-height="150" data-theme="default"></div>`
+    document.getElementById('user-github-handles').insertAdjacentHTML('beforeend', user_github)
+
+    // let response_check = await fetch(`/set_room_name/?room_name=${CHANNEL}`)
+    // users_check = await response_check.json()
     await client.publish([localTracks[0], localTracks[1]])
 }
 
@@ -57,7 +77,11 @@ let handleUserJoined = async (user, mediaType) => {
         </div>`
 
         document.getElementById('video-streams').insertAdjacentHTML('beforeend', player)
+
         user.videoTrack.play(`user-${user.uid}`)
+
+        user_github = `<div class="github-card" data-github=${member.name} data-width="400" data-height="150" data-theme="default"></div>`
+        document.getElementById('user-github-handles').insertAdjacentHTML('beforeend', user_github)
     }
 
     if (mediaType === 'audio'){
@@ -191,44 +215,6 @@ let codeEditorFunction = async () => {
 
 
 
-// let InitEditor = () => {
-//     // console.log("editor started")
-//     let editor = CodeMirror(document.getElementById("firepad"),{
-//     lineNumbers: true,
-//     theme: 'dracula',
-//     mode: 'javascript'})
-
-//     editor.setSize("100%", "100%")
-
-//     let dbRef = initFirebase()
-
-//     Firepad.fromCodeMirror(dbRef, editor,
-//             { defaultText: '//Enter Code here' }); 
-
-//     console.log("editor finished")
-// }
-
-// let initFirebase = () => {  
-//     // Initialize the Firebase SDK.
-//     firebase.initializeApp({
-//     apiKey: 'AIzaSyDtz7Sro_WRcXsd1JNByOVz-gbDJkPCsak',
-//     databaseURL: 'https://collabhub-ab2b3-default-rtdb.firebaseio.com'
-//     });
-
-//     // Get Firebase Database reference.
-//     var firepadRef = firebase.database().ref();
-//     console.log("firebase started")
-//     return firepadRef
-
-//     // // Create CodeMirror (with lineWrapping on).
-//     // var codeMirror = CodeMirror(document.getElementById('firepad'), { lineWrapping: true });
-//     // codeMirror.setSize("100%", "100%")
-//     // // Create Firepad (with rich text toolbar and shortcuts enabled).
-//     // var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror,
-//     //     { richTextShortcuts: true, richTextToolbar: true, defaultText: 'Hello, World!' });
-// }
-///////// END CODE EDITOR CODE ///////////////
-
 joinAndDisplayLocalStream()
 codeEditorFunction()
 // InitEditor()
@@ -240,3 +226,13 @@ window.addEventListener('beforeunload', deleteMember)
 document.getElementById('leave-btn').addEventListener('click', leaveAndRemoveLocalStream)
 document.getElementById('camera-btn').addEventListener('click', toggleCamera)
 document.getElementById('mic-btn').addEventListener('click', toggleMic)
+
+!function(d,s,id){
+    var js,fjs=d.getElementsByTagName(s)[0];
+    if(!d.getElementById(id)){
+      js=d.createElement(s);
+      js.id=id;
+      js.src="https://lab.lepture.com/github-cards/widget.js";
+      fjs.parentNode.insertBefore(js,fjs);
+    }
+  }(document,"script","github-cards-widget");

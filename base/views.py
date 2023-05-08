@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import JsonResponse 
+from django.http import JsonResponse
 from agora_token_builder import RtcTokenBuilder
 from django.core.exceptions import ObjectDoesNotExist
 import random
@@ -10,6 +10,17 @@ from .models import RoomMember, Room_Code
 
 from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
+
+
+remote_users = []
+
+def set_room_name(request):
+    room_name = request.GET.get('room_name')
+    global remote_users 
+    remote_users = RoomMember.objects.filter(room_name=room_name,)
+
+    return JsonResponse({'room':room_name}, safe=False)
+
 
 def getToken(request):
     appId = 'c8543d5fb1f14fe8ae27169d84a3abb7'
@@ -28,6 +39,15 @@ def lobby(request):
     return render(request, 'base/lobby.html')
 
 def room(request):
+    # room_name = request.GET.get('room_name')
+
+    # members = RoomMember.objects.get(
+    #     room_name=room_name,
+    # )
+
+    # context = {
+    #     'github_handles': remote_users
+    # }
     return render(request, 'base/room.html')
 
 # def joinCodeRoom(request):
@@ -105,3 +125,11 @@ def deleteMember(request):
     )
     member.delete()
     return JsonResponse('Member deleted', safe=False)
+
+# def getMember(request):
+#     room_name = request.GET.get('room_name')
+
+#     member = RoomMember.objects.get(
+#         room_name=room_name,
+#     )
+

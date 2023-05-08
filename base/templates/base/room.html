@@ -18,10 +18,30 @@
       bottom: 0;
       left: 0;
   }
+
+  #user-github-wrapper{
+    height: 100px;
+    width: 100px;
+  }
+
+  #user-github-handles{
+    height: 85vh;
+    width: 75%;
+  }
+
+  .github-card{
+    height: 100%;
+  }
 </style>
 
 
 <main>
+
+
+
+
+  <div class="github-card" data-github="AvniMittal13" data-width="400" data-height="150" data-theme="default"></div>
+
   <section id="room-name-wrapper">
     <p>Room Name: <span id="room-name"></span></p>
   </section>
@@ -44,7 +64,24 @@
 
   </section>
 
+  <section id = "user-github-handles">
+  
+      <!-- <div class="github-card" data-github= data-width="400" data-height="150" data-theme="default"></div> -->
+    
+  </section>
+  <section id="user-github-wrapper">
 
+  <!-- <section id = "user-github-handles">
+    {% for user in github_handles %}
+      <div class="github-card" data-github={{ user.name }} data-width="400" data-height="150" data-theme="default"></div>
+    {% endfor %}
+  </section> -->
+  <!-- <section id="user-github-wrapper">
+
+
+
+  
+  </section> -->
   <!-- <div id="code-editor"></div> -->
 
   <div class="editor-container" onload = "codeEditorFunction()">
@@ -81,6 +118,9 @@
   <!-- Firepad -->
   <link rel="stylesheet" href="https://firepad.io/releases/v1.5.10/firepad.css" />
   <script src="https://firepad.io/releases/v1.5.10/firepad.min.js"></script>
+
+
+
 
 <!-- 
 <script>
@@ -133,4 +173,6 @@
 
 <script type = "text/javascript" src = "{% static 'assets/AgoraRTC_N-4.17.2.js' %}"></script>
 <script type = "text/javascript" src = {% static 'js/streams.js' %}></script>
+<script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+
 {% endblock content %}
