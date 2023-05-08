@@ -5,6 +5,7 @@ from django.core.exceptions import ObjectDoesNotExist
 import random
 import time
 import json
+import requests
 
 from .models import RoomMember, Room_Code
 
@@ -132,4 +133,39 @@ def deleteMember(request):
 #     member = RoomMember.objects.get(
 #         room_name=room_name,
 #     )
+
+# ASSIGN ISSUE
+@csrf_exempt
+def assign_issue(request):
+    data = json.loads(request.body)
+    owner = data['owner']
+    repo = data['repo']
+    access_code = data['code']
+    title = data['title']
+    body = data['body']
+    assignees = data['assignees']
+    labels = data['labels']
+
+    print("ASSIGNEES: ", assignees)
+    
+
+    # owner = 'lavish2210'
+    # repo = 'ColabHub'
+
+
+    response = requests.post(
+        f'https://api.github.com/repos/{owner}/{repo}/issues',
+        headers={
+            'Accept': 'application/vnd.github+json',
+            'Authorization': 'Bearer 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',
+            'X-GitHub-Api-Version': '2022-11-28'
+        },
+        json={
+            'title': title,
+            'body': body,
+            'assignees': assignees.split(","),
+            'labels': labels.split(","),
+        }
+    )
+    return JsonResponse('Issue Assigned', safe=False)
 

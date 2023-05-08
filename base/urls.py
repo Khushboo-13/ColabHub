@@ -10,5 +10,6 @@ urlpatterns = [
     path('delete_member/', views.deleteMember),
     path('join_code_room/', views.joinCodeRoom),
     path('check_room/', views.checkRoom),
-    path('set_room_name/', views.set_room_name)
+    path('set_room_name/', views.set_room_name),
+    path('assign_issue/', views.assign_issue),
 ]

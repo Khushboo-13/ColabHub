@@ -51,8 +51,8 @@ let joinAndDisplayLocalStream = async () => {
     // // Add the container div to the HTML document
     // document.body.appendChild(container);
 
-    user_github = `<div class="github-card" data-github=${member.name} data-width="400" data-height="150" data-theme="default"></div>`
-    document.getElementById('user-github-handles').insertAdjacentHTML('beforeend', user_github)
+    // user_github = `<div class="github-card" data-github=${member.name} data-width="400" data-height="150" data-theme="default"></div>`
+    // document.getElementById('user-github-handles').insertAdjacentHTML('beforeend', user_github)
 
     // let response_check = await fetch(`/set_room_name/?room_name=${CHANNEL}`)
     // users_check = await response_check.json()
@@ -213,9 +213,59 @@ let codeEditorFunction = async () => {
 
 }
 
+let displayGithubIssues = async () => {
+        // check if room is present or not
+    let response_room = await fetch(`/check_room/?room_name=${CHANNEL}`)
+    let room = await response_room.json()
+    let code_token = room.room
+    // console.log("TOKEN PRESENT OR NOT: ", code_token)
+    if(code_token === "NONE")
+    {
+        
 
+        // const formContainer = document.getElementById("github-issues");
+        const form1 = document.getElementById("github-issue-form");
+        const form2 = document.getElementById("after-github-info");
+
+        form1.addEventListener("submit", (e) => {
+            event.preventDefault(); // prevent default form submission behavior
+            // const name = document.getElementById("name").value;
+            // const email = document.getElementById("email").value;
+            let owner_name = e.target.owner_username.value
+            let repo_name = e.target.repository_name.value 
+            let access_token = e.target.authorization_code.value
+
+            // store data somewhere, such as in an array or in local storage
+            sessionStorage.setItem("owner_name", owner_name);
+            sessionStorage.setItem("repo_name", repo_name);
+            sessionStorage.setItem("access_token", access_token);
+            // sessionStorage.setItem("repo_name", repo_name);
+            
+            // hide form 1 and show form 2
+            form1.style.display = "none";
+            form2.style.display = "block";
+        });
+
+
+        const formButton = document.getElementById('create-issue-btn');
+        const formContainer = document.getElementById('create-issue-form');
+
+        formButton.addEventListener('click', () => {
+        formButton.style.display = 'none';
+        formContainer.style.display = 'block';
+        });
+
+        formContainer.addEventListener('submit', (e) => {
+        e.preventDefault();
+        formContainer.style.display = 'none';
+        formButton.style.display = 'block';
+        });
+
+    }
+}
 
 joinAndDisplayLocalStream()
+// displayGithubIssues()
 codeEditorFunction()
 // InitEditor()
 
@@ -227,12 +277,80 @@ document.getElementById('leave-btn').addEventListener('click', leaveAndRemoveLoc
 document.getElementById('camera-btn').addEventListener('click', toggleCamera)
 document.getElementById('mic-btn').addEventListener('click', toggleMic)
 
-!function(d,s,id){
-    var js,fjs=d.getElementsByTagName(s)[0];
-    if(!d.getElementById(id)){
-      js=d.createElement(s);
-      js.id=id;
-      js.src="https://lab.lepture.com/github-cards/widget.js";
-      fjs.parentNode.insertBefore(js,fjs);
-    }
-  }(document,"script","github-cards-widget");
+///////////////    ASSIGN  GITHUB ISSUES    ////////////////////
+const form1 = document.getElementById("github-issue-form");
+const form2 = document.getElementById("after-github-info");
+document.getElementById("github-issue-form").addEventListener("submit", (e) => {
+    e.preventDefault(); // prevent default form submission behavior
+    // const name = document.getElementById("name").value;
+    // const email = document.getElementById("email").value;
+    let owner_name = e.target.owner_username.value
+    let repo_name = e.target.repository_name.value 
+    let access_token = e.target.authorization_code.value
+
+    // store data somewhere, such as in an array or in local storage
+    sessionStorage.setItem("owner_name", owner_name);
+    sessionStorage.setItem("repo_name", repo_name);
+    sessionStorage.setItem("access_token", access_token);
+    // sessionStorage.setItem("repo_name", repo_name);
+    
+    // hide form 1 and show form 2
+    form1.style.display = "none";
+    form2.style.display = "block";
+});
+
+const formButton = document.getElementById('create-issue-btn');
+const formContainer = document.getElementById('issue-assign');
+
+formButton.addEventListener('click', () => {
+formButton.style.display = 'none';
+formContainer.style.display = 'block';
+});
+
+let assign_issue_func = async (title, body, assignees, labels) => {
+
+    let OWNER = sessionStorage.getItem('owner_name')
+    let REPO = sessionStorage.getItem('repo_name')
+    let ACCESS_CODE = sessionStorage.getItem('access_token')
+    console.log("assignees: ", assignees, " labels: ", labels, " title: ", title, " body: ", body)
+    let response = await fetch('/assign_issue/', {
+        method:'POST',
+        headers: {
+            'Content-Type':'application/json'
+        },
+        body:JSON.stringify({
+            'owner': OWNER,
+            'repo': REPO, 
+            'code': ACCESS_CODE,
+            'title':title,
+            'body':body, 
+            'assignees':assignees, 
+            'labels':labels,
+        })
+    })
+} 
+
+formContainer.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // create an issue when submit button clicked 
+    let title = e.target.issue_title.value  
+    let body = e.target.issue_body.value 
+    let assignees = e.target.issue_assignees.value
+    let labels = e.target.issue_labels.value
+
+    assign_issue_func(title, body, assignees, labels)
+
+    formContainer.style.display = 'none';
+    formButton.style.display = 'block';
+});
+
+// !function(d,s,id){
+//     var js,fjs=d.getElementsByTagName(s)[0];
+//     if(!d.getElementById(id)){
+//       js=d.createElement(s);
+//       js.id=id;
+//       js.src="https://lab.lepture.com/github-cards/widget.js";
+//       fjs.parentNode.insertBefore(js,fjs);
+//     }
+//   }(document,"script","github-cards-widget");

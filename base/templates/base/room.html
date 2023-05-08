@@ -40,7 +40,7 @@
 
 
 
-  <div class="github-card" data-github="AvniMittal13" data-width="400" data-height="150" data-theme="default"></div>
+  <!-- <div class="github-card" data-github="AvniMittal13" data-width="400" data-height="150" data-theme="default"></div> -->
 
   <section id="room-name-wrapper">
     <p>Room Name: <span id="room-name"></span></p>
@@ -64,12 +64,80 @@
 
   </section>
 
-  <section id = "user-github-handles">
+<section id="github-issues-wrapper">
+  <!-- form container -->
+  <section id="github-issues">  
+    <!-- form 1 -->
+    <form id="github-issue-form" method="post">
+      {% csrf_token %}
+      <div class="form-field">
+        <input type="text" name="owner_username" placeholder="Enter name of Owner..." />
+      </div>
+
+      <div class="form-field">
+        <input type="text" name="repository_name" placeholder="Repository Name..." />
+      </div>
+
+      <div class="form-field">
+        <input type="password" name="authorization_code" placeholder="Enter Your Personal Access Token" />
+      </div>
+
+      <div class="form-field">
+        <input type="submit" value="submit-github-info" />
+    </div>
+
+    </form>
+
+  <!-- form 2 -->
+  <div id="after-github-info" style="display:none">
+      <button id="create-issue-btn">Create New Issue</button>      
+
+      <!-- <div id="create-issue-form" style="display: none;"> -->
+        
+
+        <form id="issue-assign" style="display: none;" method="post">
+          {% csrf_token %}
+          <p> Enter details of the Issue</p>
+          <div class="form-field">
+            <input type="text" name="issue_title" placeholder="Issue Title" />
+          </div>
+    
+          <div class="form-field">
+            <input type="text" name="issue_body" placeholder="What is the issue about..." />
+          </div>
+    
+          <div class="form-field">
+            <input type="text" name="issue_assignees" placeholder="Issue Assigned to ..." />
+          </div>
+
+          <div class="form-field">
+            <input type="text" name="issue_labels" placeholder="Issue Labels" />
+          </div>
+    
+          <div class="form-field">
+            <input type="submit" value="submit_issue_info" />
+          </div>
+
+          <!-- <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required><br><br>
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required><br><br>
+          <input type="submit" value="Submit"> -->
+        </form>
+      <!-- </div> -->
+    </div>
+  </section>
+
+</section>
+
+  <!-- <section id = "user-github-handles"> -->
   
       <!-- <div class="github-card" data-github= data-width="400" data-height="150" data-theme="default"></div> -->
     
-  </section>
-  <section id="user-github-wrapper">
+  <!-- </section> -->
+
+  
+  <!-- <section id="user-github-wrapper"> -->
 
   <!-- <section id = "user-github-handles">
     {% for user in github_handles %}
