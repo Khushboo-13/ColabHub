@@ -474,7 +474,6 @@ compileForm.addEventListener('submit', async (e) => {
 
 function changeLanguage() {
     var select = document.getElementById("language-select");
-    var greeting = document.getElementById("greeting");
   
     // Get the selected value from the dropdown menu
     var selectedValue = select.options[select.selectedIndex].value;
@@ -532,6 +531,47 @@ function changeLanguage() {
             codeMirror.setOption("mode", "python");
             firepad.setText('# Write your code here');
             lang_id = 71
+        }
+        break;
+    }
+  }
+  
+  function changeTheme() {
+    var select = document.getElementById("theme-select");
+  
+    // Get the selected value from the dropdown menu
+    var selectedValue = select.options[select.selectedIndex].value;
+  
+    // Set the greeting based on the selected language
+    switch (selectedValue) {
+      case "dracula":
+        {
+            codeMirror.setOption("theme", "dracula");
+        }
+        break;
+      case "cobalt":
+        {
+            codeMirror.setOption("theme", "cobalt");
+        }
+        break;
+      case "ambience": 
+        {
+            codeMirror.setOption("theme", "ambience");
+        }
+        break;
+      case "monokai":
+        {
+            codeMirror.setOption("theme", "monokai");
+        }
+        break;
+      case "neo":
+        {
+            codeMirror.setOption("theme", "neo");
+        }
+        break;
+      default:
+        {
+            codeMirror.setOption("theme", "dracula");
         }
         break;
     }

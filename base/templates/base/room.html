@@ -169,6 +169,15 @@
     <option value="Rust">Rust</option>
   </select>
 
+  <select id="theme-select" onchange="changeTheme()">
+    <option value="dracula">Dracula</option>
+    <option value="cobalt">Cobalt</option>
+    <option value="ambience">Ambience</option>
+    <option value="monokai">Monokai</option>
+    <option value="neo">Neo</option>
+  </select>
+
+
   <div id="stdin-input">
     <form id="stdin">
       <textarea name="stdin_in" id="stdin_in" cols="20" rows="10"></textarea>
@@ -201,7 +210,7 @@
 
   <!-- CodeMirror -->
   <script  type = "text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"></script>
-  <!-- languages -->
+  <!-- options languages -->
   <script  type = "text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/javascript/javascript.min.js"></script>
   <script  type = "text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/python/python.min.js"></script>
   <script  type = "text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/clike/clike.min.js"></script>
@@ -213,7 +222,14 @@
 
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css"/>
-  <link rel="stylesheet" href="  https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/dracula.min.css"/>
+
+  <!-- theme options -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/dracula.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/ambiance.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/cobalt.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/monokai.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/neo.min.css"/>
+
   
   <!-- Firepad -->
   <link rel="stylesheet" href="https://firepad.io/releases/v1.5.10/firepad.css" />
