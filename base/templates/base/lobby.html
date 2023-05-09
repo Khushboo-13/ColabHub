@@ -1,9 +1,125 @@
-{% extends 'base/main.html' %}
 {% load static %}
 
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
 
-<main>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Colab-Hub: Join Room</title>
+
+    <!-- ================= Favicon ================== -->
+    <!-- Standard -->
+    <link rel="shortcut icon" href="http://placehold.it/64.png/000/fff">
+    <!-- Retina iPad Touch Icon-->
+    <link rel="apple-touch-icon" sizes="144x144" href="http://placehold.it/144.png/000/fff">
+    <!-- Retina iPhone Touch Icon-->
+    <link rel="apple-touch-icon" sizes="114x114" href="http://placehold.it/114.png/000/fff">
+    <!-- Standard iPad Touch Icon-->
+    <link rel="apple-touch-icon" sizes="72x72" href="http://placehold.it/72.png/000/fff">
+    <!-- Standard iPhone Touch Icon-->
+    <link rel="apple-touch-icon" sizes="57x57" href="http://placehold.it/57.png/000/fff">
+
+    <!-- Styles -->
+    <link href="{% static 'main/css/lib/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'main/css/lib/themify-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'main/css/lib/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'main/css/lib/helper.css' %}" rel="stylesheet">
+    <link href="{% static 'main/css/style.css' %}" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" media="screen" href ="{% static 'styles/main.css' %}"  >
+
+</head>
+
+<body class="bg-primary">
+
+    <div class="unix-login">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="login-content">
+                        <div class="login-logo">
+                            <a href="index.html"><span>Welcome to Colab-Hub</span></a>
+                        </div>
+                        <div class="login-form">
+                            <h4>Join/Create Room</h4>
+                            <form id="form">
+                                <div class="form-group">
+                                    <div class="form-field">
+                                        <input type="text" name="room" placeholder="Enter a room name..." style="text-transform:uppercase;" class="form-control" />
+                                    </div>
+                                    <!-- <label>Email address</label> -->
+                                    <!-- <input type="email" class="form-control" placeholder="Email"> -->
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-field">
+                                        <input type="text" name="username" placeholder="Enter your name..." class="form-control" />
+                                    </div>
+                                    <!-- <label>Password</label> -->
+                                    <!-- <input type="password" class="form-control" placeholder="Password"> -->
+                                </div>
+                                <!-- <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30"> -->
+                                    <div class="form-field">
+                                        <input type="submit" value="Join Stream" class="btn btn-primary btn-flat m-b-30 m-t-30" />
+                                    </div>
+                                <!-- </button> -->
+                                <!-- <div class="social-login-content">
+                                    <div class="social-button">
+                                        <button type="button" class="btn btn-primary bg-facebook btn-flat btn-addon m-b-10"><i class="ti-facebook"></i>Sign in with facebook</button>
+                                        <button type="button" class="btn btn-primary bg-twitter btn-flat btn-addon m-t-10"><i class="ti-twitter"></i>Sign in with twitter</button>
+                                    </div>
+                                </div>
+                                <div class="register-link m-t-15 text-center">
+                                    <p>Don't have account ? <a href="#"> Sign Up Here</a></p>
+                                </div> -->
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        let form = document.getElementById('form')
+    
+        let handleSubmit = async (e) => {
+            e.preventDefault()
+    
+            let room = e.target.room.value.toUpperCase()
+            let name = e.target.username.value
+    
+            let response = await fetch(`/get_token/?channel=${room}`)
+            let data = await response.json()
+    
+            let UID = data.uid 
+            let token = data.token 
+    
+            sessionStorage.setItem('UID', UID) // local storage of the browser, removed when user closes
+            sessionStorage.setItem('token', token)
+            sessionStorage.setItem('room', room)
+            sessionStorage.setItem('name', name)
+    
+            window.open('/room/', '_self')
+        }
+    
+        form.addEventListener('submit', handleSubmit)
+    </script>
+    <!-- <script type = "text/javascript" src = "{% static 'assets/AgoraRTC_N-4.17.2.js' %}"></script> -->
+    <!-- <script type = "text/javascript" src = {% static 'js/streams.js' %}></script> -->
+    
+    
+    
+    
+
+</body>
+
+</html>
+
+<!-- <main>
 
     <section id = "form-container">
         <img id="logo" src=" {% static 'images/chat-icon.png' %}">
@@ -30,36 +146,5 @@
     </section>
 
 
-</main>
+</main> -->
 
-<script type="text/javascript">
-    let form = document.getElementById('form')
-
-    let handleSubmit = async (e) => {
-        e.preventDefault()
-
-        let room = e.target.room.value.toUpperCase()
-        let name = e.target.username.value
-
-        let response = await fetch(`/get_token/?channel=${room}`)
-        let data = await response.json()
-
-        let UID = data.uid 
-        let token = data.token 
-
-        sessionStorage.setItem('UID', UID) // local storage of the browser, removed when user closes
-        sessionStorage.setItem('token', token)
-        sessionStorage.setItem('room', room)
-        sessionStorage.setItem('name', name)
-
-        window.open('/room/', '_self')
-    }
-
-    form.addEventListener('submit', handleSubmit)
-</script>
-<!-- <script type = "text/javascript" src = "{% static 'assets/AgoraRTC_N-4.17.2.js' %}"></script> -->
-<!-- <script type = "text/javascript" src = {% static 'js/streams.js' %}></script> -->
-
-
-
-{% endblock content %}
