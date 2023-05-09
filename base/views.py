@@ -157,7 +157,7 @@ def assign_issue(request):
         f'https://api.github.com/repos/{owner}/{repo}/issues',
         headers={
             'Accept': 'application/vnd.github+json',
-            'Authorization': 'Bearer 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',
+            'Authorization': access_code,
             'X-GitHub-Api-Version': '2022-11-28'
         },
         json={
@@ -169,3 +169,27 @@ def assign_issue(request):
     )
     return JsonResponse('Issue Assigned', safe=False)
 
+@csrf_exempt
+def get_issue(request):
+
+    # owner = request.GET.get('owner')
+    # repo = request.GET.get('repo')
+    # access_code = request.GET.get('code')
+    data = json.loads(request.body)
+    owner = data['owner']
+    repo = data['repo']
+    access_code = data['code']
+
+    response = requests.get(
+        f'https://api.github.com/repos/{owner}/{repo}/issues',
+        headers={
+            'Accept': 'application/vnd.github+json',
+            'Authorization': access_code,
+            'X-GitHub-Api-Version': '2022-11-28'
+        }
+    )
+    a = response.json() 
+    # print(a)
+    # for id in a:
+    #     print(id)
+    return JsonResponse({'reply': a}, safe=False)

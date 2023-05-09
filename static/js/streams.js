@@ -278,6 +278,75 @@ document.getElementById('camera-btn').addEventListener('click', toggleCamera)
 document.getElementById('mic-btn').addEventListener('click', toggleMic)
 
 ///////////////    ASSIGN  GITHUB ISSUES    ////////////////////
+
+let display_data = (data) => {
+    for (let i in data) {
+
+        // Get the ul with id of of issuesRepo
+        let ul = document.getElementById('repo_issues');
+
+        // Create variable that will create li's to be added to ul
+        let li = document.createElement('li');
+        
+        // Add Bootstrap list item class to each li
+        // li.classList.add('list-group-item')
+    
+        // Create the html markup for each li
+        li.innerHTML = (`
+            <p><strong>Title:</strong> ${data[i].title}</p>
+            <p><strong>User:</strong> ${data[i].user.login}</p>
+            <p><strong>URL:</strong> <a href="${data[i].html_url}">${data[i].html_url}</a></p>
+        `);
+        
+        // Append each li to the ul
+        ul.appendChild(li);
+}}
+
+let get_issue_func = async () => {
+
+    const OWNER = sessionStorage.getItem('owner_name')
+    const REPO = sessionStorage.getItem('repo_name')
+    const ACCESS_CODE = sessionStorage.getItem('access_token')
+
+    // let response = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/issues`,
+    //     {
+    //         headers: {
+    //             'Accept': 'application/vnd.github+json',
+    //             'Authorization': `${ACCESS_CODE}`,
+    //             'X-GitHub-Api-Version': '2022-11-28'
+    //         }
+    //     })
+
+    // let data = await response.json()
+    // console.log("dataaa ", data)
+    // display_data(data)
+
+        // .then(response => response.json())
+        // .then(data => {
+        //     console.log(data)
+        //     display_data(data);
+        // })
+        // .catch(error => console.error(error))
+
+
+
+    let response = await fetch('/get_issue/', {
+        method:'POST',
+        headers: {
+            'Content-Type':'application/json'
+        },
+        body:JSON.stringify({
+            'owner': OWNER,
+            'repo': REPO, 
+            'code': ACCESS_CODE,
+        })
+    })
+    let data = await response.json()
+    // console.log("data issues: ", data.reply)
+    display_data(data.reply)
+} 
+
+
 const form1 = document.getElementById("github-issue-form");
 const form2 = document.getElementById("after-github-info");
 document.getElementById("github-issue-form").addEventListener("submit", (e) => {
@@ -293,6 +362,8 @@ document.getElementById("github-issue-form").addEventListener("submit", (e) => {
     sessionStorage.setItem("repo_name", repo_name);
     sessionStorage.setItem("access_token", access_token);
     // sessionStorage.setItem("repo_name", repo_name);
+
+    get_issue_func()
     
     // hide form 1 and show form 2
     form1.style.display = "none";
@@ -329,6 +400,7 @@ let assign_issue_func = async (title, body, assignees, labels) => {
         })
     })
 } 
+
 
 formContainer.addEventListener('submit', (e) => {
     e.preventDefault();
