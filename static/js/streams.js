@@ -162,6 +162,9 @@ let deleteMember = async () => {
 ////////// CODE EDITOR CODE /////////////////
 
 let firepad
+let firepadRef 
+let codeMirror
+let lang_id = 71
 
 let codeEditorFunction = async () => {
 
@@ -172,7 +175,7 @@ let codeEditorFunction = async () => {
     });
 
     // Get Firebase Database reference.
-    var firepadRef = firebase.database().ref();
+    firepadRef = firebase.database().ref();
 
     // check if room is present or not
     let response_room = await fetch(`/check_room/?room_name=${CHANNEL}`)
@@ -203,16 +206,16 @@ let codeEditorFunction = async () => {
       window.history.replaceState(null, "Collab Hub", "?id="+code_token.code)
     }
     // Create CodeMirror (with lineWrapping on).
-    var codeMirror = CodeMirror(document.getElementById('firepad'), { 
+    codeMirror = CodeMirror(document.getElementById('firepad'), { 
     lineWrapping: true , 
     lineNumbers: true,
     theme: 'dracula',
-    mode: 'javascript'});
+    mode: 'python'});
     
     codeMirror.setSize("100%", "100%")
     // Create Firepad (with rich text toolbar and shortcuts enabled).
     firepad = Firepad.fromCodeMirror(firepadRef, codeMirror,
-        { defaultText: 'Hello, World!' });
+        { defaultText: '# Write your code here' });
 
 }
 
@@ -310,28 +313,6 @@ let get_issue_func = async () => {
     const OWNER = sessionStorage.getItem('owner_name')
     const REPO = sessionStorage.getItem('repo_name')
     const ACCESS_CODE = sessionStorage.getItem('access_token')
-
-    // let response = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/issues`,
-    //     {
-    //         headers: {
-    //             'Accept': 'application/vnd.github+json',
-    //             'Authorization': `${ACCESS_CODE}`,
-    //             'X-GitHub-Api-Version': '2022-11-28'
-    //         }
-    //     })
-
-    // let data = await response.json()
-    // console.log("dataaa ", data)
-    // display_data(data)
-
-        // .then(response => response.json())
-        // .then(data => {
-        //     console.log(data)
-        //     display_data(data);
-        // })
-        // .catch(error => console.error(error))
-
-
 
     let response = await fetch('/get_issue/', {
         method:'POST',
@@ -442,6 +423,7 @@ let get_stdout = async (stdin, code) => {
         body:JSON.stringify({
             'code': code,
             'stdin': stdin, 
+            'lang_id': lang_id 
         })
     })
     let data = await response.json()
@@ -487,6 +469,77 @@ compileForm.addEventListener('submit', async (e) => {
     textarea.value = stdout;
 
 });
+
+//////////// CHANGE LANGUAGE ////////////////
+
+function changeLanguage() {
+    var select = document.getElementById("language-select");
+    var greeting = document.getElementById("greeting");
+  
+    // Get the selected value from the dropdown menu
+    var selectedValue = select.options[select.selectedIndex].value;
+  
+    // Set the greeting based on the selected language
+    switch (selectedValue) {
+      case "python":
+        {
+            codeMirror.setOption("mode", "python");
+            firepad.setText('# Write your code here');
+
+            lang_id = 71
+        }
+        break;
+      case "javascript":
+            {
+                codeMirror.setOption("mode", "javascript");
+                firepad.setText('// Write your code here');
+    
+                lang_id = 63
+            }
+            break;
+      case "java":
+        {
+            codeMirror.setOption("mode", "javascript");
+            firepad.setText('// Write your code here');
+
+            lang_id = 62
+        }
+        break;
+      case "ruby":
+        {
+            codeMirror.setOption("mode", "ruby");
+            firepad.setText('# Write your code here');
+
+            lang_id = 71
+        }
+        break;
+      case "rust":
+        {
+            codeMirror.setOption("mode", "rust");
+            firepad.setText('// Write your code here');
+            lang_id = 73
+        }
+        break;
+        case "clike":
+            {
+                codeMirror.setOption("mode", "clike");
+                firepad.setText('// Write your code here');
+                lang_id = 50
+            }
+            break;
+      default:
+        {
+            codeMirror.setOption("mode", "python");
+            firepad.setText('# Write your code here');
+            lang_id = 71
+        }
+        break;
+    }
+  }
+  
+
+
+
 
 // !function(d,s,id){
 //     var js,fjs=d.getElementsByTagName(s)[0];

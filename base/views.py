@@ -201,13 +201,14 @@ def compile_code(request):
     data = json.loads(request.body)
     code = data['code']
     stdin = data['stdin']
+    lang_id = data['lang_id']
 
     url = "https://judge0-ce.p.rapidapi.com/submissions"
 
     querystring = {"base64_encoded":"false","fields":"*"}
 
     payload = {
-        "language_id": 71,
+        "language_id": lang_id,
         "source_code": code,
         "stdin": stdin
     }

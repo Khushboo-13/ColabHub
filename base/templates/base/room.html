@@ -160,6 +160,15 @@
     </div> 
   </div>
 
+  <select id="language-select" onchange="changeLanguage()">
+    <option value="python">Python</option>
+    <option value="java">Java</option>
+    <option value="ruby">Ruby</option>
+    <option value="javascript">Javascript</option>
+    <option value="clike">C</option>
+    <option value="Rust">Rust</option>
+  </select>
+
   <div id="stdin-input">
     <form id="stdin">
       <textarea name="stdin_in" id="stdin_in" cols="20" rows="10"></textarea>
@@ -196,8 +205,12 @@
   <script  type = "text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/javascript/javascript.min.js"></script>
   <script  type = "text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/python/python.min.js"></script>
   <script  type = "text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/clike/clike.min.js"></script>
-  <script  type = "text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/clike/clike.min.js"></script>
+  <script  type = "text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/ruby/ruby.min.js"></script>
   <script  type = "text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/dart/dart.min.js"></script>
+  <script  type = "text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/rust/rust.min.js"></script>
+  <script  type = "text/javascript" src="  https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/php/php.min.js"></script>
+
+
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css"/>
   <link rel="stylesheet" href="  https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/dracula.min.css"/>
