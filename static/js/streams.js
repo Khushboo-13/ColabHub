@@ -161,6 +161,8 @@ let deleteMember = async () => {
 
 ////////// CODE EDITOR CODE /////////////////
 
+let firepad
+
 let codeEditorFunction = async () => {
 
     // Initialize the Firebase SDK.
@@ -206,9 +208,10 @@ let codeEditorFunction = async () => {
     lineNumbers: true,
     theme: 'dracula',
     mode: 'javascript'});
+    
     codeMirror.setSize("100%", "100%")
     // Create Firepad (with rich text toolbar and shortcuts enabled).
-    var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror,
+    firepad = Firepad.fromCodeMirror(firepadRef, codeMirror,
         { defaultText: 'Hello, World!' });
 
 }
@@ -415,6 +418,74 @@ formContainer.addEventListener('submit', (e) => {
 
     formContainer.style.display = 'none';
     formButton.style.display = 'block';
+});
+
+// !function(d,s,id){
+//     var js,fjs=d.getElementsByTagName(s)[0];
+//     if(!d.getElementById(id)){
+//       js=d.createElement(s);
+//       js.id=id;
+//       js.src="https://lab.lepture.com/github-cards/widget.js";
+//       fjs.parentNode.insertBefore(js,fjs);
+//     }
+//   }(document,"script","github-cards-widget");
+
+//////////////////// COMPILE CODE AND SHOW OUTPUT //////////////////////
+
+let get_stdout = async (stdin, code) => {
+    
+    let response = await fetch('/compile_code/', {
+        method:'POST',
+        headers: {
+            'Content-Type':'application/json'
+        },
+        body:JSON.stringify({
+            'code': code,
+            'stdin': stdin, 
+        })
+    })
+    let data = await response.json()
+    return data.stdout
+
+}
+
+const compileForm = document.getElementById('stdin');
+compileForm.addEventListener('submit', async (e) => {
+
+    e.preventDefault();
+    // var codeMirror = CodeMirror.fromTextArea(document.getElementById('firepad'), { 
+        
+    //     lineNumbers: true,
+    //     mode: "javasript"});
+
+    var code = firepad.getText()
+
+    console.log("code text:", code)
+
+    
+
+    // create an issue when submit button clicked 
+    let stdin = e.target.stdin_in.value  
+
+    // let stdout = await get_stdout(stdin, code)
+
+    let response = await fetch('/compile_code/', {
+        method:'POST',
+        headers: {
+            'Content-Type':'application/json'
+        },
+        body:JSON.stringify({
+            'code': code,
+            'stdin': stdin, 
+        })
+    })
+    let data = await response.json()
+    let stdout = data.stdout
+
+    console.log("output: ", stdout)
+    var textarea = document.getElementById("stdout");
+    textarea.value = stdout;
+
 });
 
 // !function(d,s,id){

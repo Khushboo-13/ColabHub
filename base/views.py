@@ -193,3 +193,52 @@ def get_issue(request):
     # for id in a:
     #     print(id)
     return JsonResponse({'reply': a}, safe=False)
+
+
+
+@csrf_exempt
+def compile_code(request):
+    data = json.loads(request.body)
+    code = data['code']
+    stdin = data['stdin']
+
+    url = "https://judge0-ce.p.rapidapi.com/submissions"
+
+    querystring = {"base64_encoded":"false","fields":"*"}
+
+    payload = {
+        "language_id": 71,
+        "source_code": code,
+        "stdin": stdin
+    }
+    headers = {
+        "content-type": "application/json",
+        "Content-Type": "application/json",
+        "X-RapidAPI-Key": "436ad4801cmsh6a9cf63a1f1730ep18f30ejsn1af9f494dffa",
+        "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com"
+    }
+
+    response = requests.post(url, json=payload, headers=headers, params=querystring)
+
+    print(response.json())
+
+    token=response.json()["token"]
+
+    url = f'https://judge0-ce.p.rapidapi.com/submissions/{token}'
+
+    querystring = {"base64_encoded":"false","fields":"*"}
+
+    headers = {
+        "X-RapidAPI-Key": "436ad4801cmsh6a9cf63a1f1730ep18f30ejsn1af9f494dffa",
+        "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com"
+    }
+
+    response = requests.get(url, headers=headers, params=querystring)
+
+    print(response.json())
+    print(response.json()["stdout"])
+    stdout = response.json()["stdout"]
+
+    return JsonResponse({'stdout': stdout}, safe=False)
+
+

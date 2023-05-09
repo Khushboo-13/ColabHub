@@ -13,4 +13,5 @@ urlpatterns = [
     path('set_room_name/', views.set_room_name),
     path('assign_issue/', views.assign_issue),
     path('get_issue/', views.get_issue),
+    path('compile_code/', views.compile_code),
 ]
