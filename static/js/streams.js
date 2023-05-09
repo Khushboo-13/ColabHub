@@ -401,6 +401,48 @@ formContainer.addEventListener('submit', (e) => {
     formButton.style.display = 'block';
 });
 
+/////////////////////////////////////////////////////////
+
+const repo_create_button = document.getElementById('create-repo-btn');
+const repo_form = document.getElementById('create-repo');
+
+repo_create_button.addEventListener('click', () => {
+    repo_create_button.style.display = 'none';
+    repo_form.style.display = 'block';
+});
+
+let create_repo_func = async (title, body, private) => {
+
+    let ACCESS_CODE = sessionStorage.getItem('access_token')
+    // console.log("assignees: ", assignees, " labels: ", labels, " title: ", title, " body: ", body)
+    let response = await fetch('/create_repo/', {
+        method:'POST',
+        headers: {
+            'Content-Type':'application/json'
+        },
+        body:JSON.stringify({
+            'code': ACCESS_CODE,
+            'title':title,
+            'body':body, 
+            'private':private, 
+        })
+    })
+} 
+
+
+repo_form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    let title = e.target.repo_title.value  
+    let body = e.target.repo_body.value 
+    let private = e.target.repo_private.value
+
+    create_repo_func(title, body, private)
+
+    repo_form.style.display = 'none';
+    repo_create_button.style.display = 'block';
+});
+
 // !function(d,s,id){
 //     var js,fjs=d.getElementsByTagName(s)[0];
 //     if(!d.getElementById(id)){
@@ -414,7 +456,7 @@ formContainer.addEventListener('submit', (e) => {
 //////////////////// COMPILE CODE AND SHOW OUTPUT //////////////////////
 
 let get_stdout = async (stdin, code) => {
-    
+    console.log(lang_id)
     let response = await fetch('/compile_code/', {
         method:'POST',
         headers: {
@@ -423,7 +465,7 @@ let get_stdout = async (stdin, code) => {
         body:JSON.stringify({
             'code': code,
             'stdin': stdin, 
-            'lang_id': lang_id 
+            'language_id': lang_id
         })
     })
     let data = await response.json()
@@ -459,6 +501,7 @@ compileForm.addEventListener('submit', async (e) => {
         body:JSON.stringify({
             'code': code,
             'stdin': stdin, 
+            'language_id': lang_id
         })
     })
     let data = await response.json()

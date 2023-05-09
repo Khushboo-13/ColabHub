@@ -14,4 +14,5 @@ urlpatterns = [
     path('assign_issue/', views.assign_issue),
     path('get_issue/', views.get_issue),
     path('compile_code/', views.compile_code),
+    path('create_repo/', views.create_repo_user)
 ]

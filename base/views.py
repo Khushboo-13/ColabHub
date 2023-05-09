@@ -201,7 +201,7 @@ def compile_code(request):
     data = json.loads(request.body)
     code = data['code']
     stdin = data['stdin']
-    lang_id = data['lang_id']
+    lang_id = data['language_id']
 
     url = "https://judge0-ce.p.rapidapi.com/submissions"
 
@@ -243,3 +243,33 @@ def compile_code(request):
     return JsonResponse({'stdout': stdout}, safe=False)
 
 
+@csrf_exempt
+def create_repo_user(request):
+
+    data = json.loads(request.body)
+    # owner = data['owner']
+    # repo = data['repo']
+    access_code = data['code']
+    repo_name = data['title']
+    repo_desc = data['body']
+    private_bool = data['private']
+
+    if(private_bool == "Yes"):
+        private_bool = "true"
+    else: 
+        private_bool = "false"
+
+    response = requests.post(
+        f'https://api.github.com/user/repos',
+        headers={
+            'Accept': 'application/vnd.github+json',
+            'Authorization': access_code,
+            'X-GitHub-Api-Version': '2022-11-28'
+        },
+        json={"name": repo_name ,
+              "description": repo_desc,
+              "homepage":"https://github.com",
+              "private": private_bool,
+              "is_template":"true"}
+    )
+    return JsonResponse('Repo Created', safe=False)
