@@ -30,8 +30,6 @@ let joinAndDisplayLocalStream = async () => {
 
     let member = await createMember()
 
-
-
     let player = `<div  class="video-container" id="user-container-${UID}">
                      <div class="video-player" id="user-${UID}"></div>
                      <div class="username-wrapper"><span class="user-name">${member.name}</span></div>
@@ -51,9 +49,9 @@ let joinAndDisplayLocalStream = async () => {
     // // Add the container div to the HTML document
     // document.body.appendChild(container);
 
-    // user_github = `<div class="github-card" data-github=${member.name} data-width="400" data-height="150" data-theme="default"></div>`
-    // document.getElementById('user-github-handles').insertAdjacentHTML('beforeend', user_github)
-
+    user_github = `<div class="github-card" data-github=${member.name} data-width="400" data-height="150" data-theme="default"></div>`
+    document.getElementById('user-github-handles').insertAdjacentHTML('beforeend', user_github)
+    $('#user-github-handles').load(window.location.ref + " #user-github-handles")
     // let response_check = await fetch(`/set_room_name/?room_name=${CHANNEL}`)
     // users_check = await response_check.json()
     await client.publish([localTracks[0], localTracks[1]])
@@ -82,6 +80,12 @@ let handleUserJoined = async (user, mediaType) => {
 
         user_github = `<div class="github-card" data-github=${member.name} data-width="400" data-height="150" data-theme="default"></div>`
         document.getElementById('user-github-handles').insertAdjacentHTML('beforeend', user_github)
+        // $('#user-github-handles').load(document.URL + " #user-github-handles")
+        $('#user-github-handles').load(window.location.ref + " #user-github-handles")
+
+        // var scriptElement = document.createElement('script');
+        // scriptElement.src = '//cdn.jsdelivr.net/github-cards/latest/widget.js';
+        // document.head.appendChild(scriptElement);
     }
 
     if (mediaType === 'audio'){
@@ -620,7 +624,10 @@ function changeLanguage() {
     }
   }
   
-
+  $(document).ready(function() {
+    $('#user-github-handles').load(window.location.href + ' #user-github-handles');
+  });
+  
 
 
 

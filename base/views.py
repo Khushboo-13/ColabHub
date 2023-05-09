@@ -36,6 +36,9 @@ def getToken(request):
     token = RtcTokenBuilder.buildTokenWithUid(appId, appCertificate, channelName, uid, role, privilegeExpiredTs)
     return JsonResponse({'token': token, 'uid': uid} ,safe = False)
 
+def main_page(request):
+    return render(request, 'base/landing.html')
+
 def lobby(request):
     return render(request, 'base/lobby.html')
 

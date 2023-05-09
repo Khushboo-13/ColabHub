@@ -1,0 +1,421 @@
+{% load static %}
+
+<html lang="en">
+  <head>
+    <!-- <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Collab-Hub</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"> -->
+  
+    <title>Collab-Hub</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+  
+    <!-- Favicons -->
+    <link href="{% static 'lobby/img/favicon.png' %}" rel="icon">
+    <link href="{% static 'lobby/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+  
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  
+    <!-- Vendor CSS Files -->
+    <link href="{% static 'lobby/vendor/aos/aos.css' %}" rel="stylesheet">
+    <link href="{% static 'lobby/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'lobby/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'lobby/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+    <link href="{% static 'lobby/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+    <link href="{% static 'lobby/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+    <link href="{% static 'lobby/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+  
+    <!-- Template Main CSS File -->
+    <link href="{% static 'lobby/css/style.css' %}" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'styles/main.css' %}"/>
+  </head>
+  <body>
+
+
+
+
+ <!-- ======= Header ======= -->
+ <header id="header" class="fixed-top ">
+  <div class="container d-flex align-items-center">
+
+    <h1 class="logo me-auto"><a href="#">Collab-Hub</a></h1>
+    <!-- Uncomment below if you prefer to use an image logo -->
+    <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+        <li><a class="nav-link scrollto" href="#about">About</a></li>
+        <li><a class="nav-link scrollto" href="#services">Features</a></li>
+        <li><a class="getstarted scrollto" href="#about">Get Started</a></li>
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav><!-- .navbar -->
+
+  </div>
+</header><!-- End Header -->
+
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex align-items-center">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
+        <h1>Colab on Coding Projects</h1>
+        <h2>Video conferencing, Real-time code editor and Github Integration</h2>
+        <div class="d-flex justify-content-center justify-content-lg-start">
+          <form id="form_lobby">
+
+            <input type="submit" value="Start Collaborating" class="btn-get-started scrollto" />
+          <!-- <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> -->
+          </form>
+        </div>
+      </div>
+      <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
+        <img src="{% static 'lobby/img/hero-img.png' %}" class="img-fluid animated" alt="">
+      </div>
+    </div>
+  </div>
+
+</section><!-- End Hero -->
+
+<main id="main">
+
+
+  <!-- ======= About Us Section ======= -->
+  <section id="about" class="about">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title">
+        <h2>About Us</h2>
+      </div>
+
+      <div class="row content">
+        <div class="col-lg-6">
+          <p>
+            CodeColab is a powerful tool designed to bring together two essential tools for any collaborative coding effort: a video conferencing system and a code editor. Our platform allows you and your team to work together on coding projects in real-time while communicating face-to-face through our video conferencing system.
+          </p>
+          <ul>
+            <li><i class="ri-check-double-line"></i>Real-time Video Conferencing and chatting</li>
+            <li><i class="ri-check-double-line"></i>Real time code colaboration and code compiling.</li>
+            <li><i class="ri-check-double-line"></i>Organisation's Repository Github Integration</li>
+          </ul>
+        </div>
+        <div class="col-lg-6 pt-4 pt-lg-0">
+          <p>
+            With CodeColab, you can improve collaboration, productivity, and overall results for your coding team. Join us today and experience the benefits of real-time collaboration and streamlined workflows.
+          </p>
+          <a href="#" class="btn-learn-more">Learn More</a>
+        </div>
+      </div>
+
+    </div>
+  </section><!-- End About Us Section -->
+
+  <!-- ======= Why Us Section ======= -->
+  <section id="why-us" class="why-us section-bg">
+    <div class="container-fluid" data-aos="fade-up">
+
+      <div class="row">
+
+        <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch  order-2 order-lg-1">
+
+          <div class="content">
+            <h3>Collaborate <strong>Real-Time</strong></h3>
+            <p>
+              With its user-friendly interface, support for multiple coding languages, and built-in code runner, CodeCollab makes it easy to work on code together and see changes as they happen. Perfect for coding teams, open-source projects, and anyone who wants to collaborate on code in real-time.
+            </p>
+          </div>
+
+          <div class="accordion-list">
+            <ul>
+              <li>
+                <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-1"><span>01</span> Seamless Github Integration <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                <div id="accordion-list-1" class="collapse show" data-bs-parent=".accordion-list">
+                  <p>
+                    You can use our code editor to assign issues to team members and track their progress in real-time. This feature ensures that everyone knows what tasks they need to complete and helps you stay on top of your project's development.
+                  </p>
+                </div>
+              </li>
+
+              <li>
+                <a data-bs-toggle="collapse" data-bs-target="#accordion-list-2" class="collapsed"><span>02</span> Code-Editor and compiler <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                <div id="accordion-list-2" class="collapse" data-bs-parent=".accordion-list">
+                  <p>
+                    At the heart of our platform is a powerful code editor, thoughtfully crafted to make collaborative coding more accessible and efficient than ever before. Whether you're working on a group project or need to share code snippets with your teammates, our editor simplifies the process, allowing you to write and edit code with ease.
+                  </p>
+                </div>
+              </li>
+
+              <li>
+                <a data-bs-toggle="collapse" data-bs-target="#accordion-list-3" class="collapsed"><span>03</span> Video Conferencing <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                <div id="accordion-list-3" class="collapse" data-bs-parent=".accordion-list">
+                  <p>
+                    Experience the power of face-to-face communication with our cutting-edge video conferencing system. With the ability to seamlessly connect with your team members, you can collaborate on coding projects in real-time, ensuring your team is always on the same page.
+                  </p>
+                </div>
+              </li>
+
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img" style='background-image: url("{% static 'lobby/img/why-us.png' %}");' data-aos="zoom-in" data-aos-delay="150">&nbsp;</div>
+      </div>
+
+    </div>
+  </section>
+  <!-- End Why Us Section -->
+
+  <!-- ======= Services Section ======= -->
+  <section id="services" class="services section-bg">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title">
+        <h2>Features</h2>
+        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+      </div>
+
+      <div class="row">
+        <div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+          <div class="icon-box">
+            <div class="icon"><i class="bx bxl-dribbble"></i></div>
+            <h4><a href="">Video Conferencing</a></h4>
+            <p>Videochat allows developers to collaborate in real-time. They can discuss code changes, brainstorm ideas, and provide instant feedback to each other.</p>
+          </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+          <div class="icon-box">
+            <div class="icon"><i class="bx bx-file"></i></div>
+            <h4><a href="">Real Time Updation</a></h4>
+            <p>Real-time updating allows multiple developers to work on the same codebase simultaneously. This enables faster collaboration and reduces the time required to merge changes.</p>
+          </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="300">
+          <div class="icon-box">
+            <div class="icon"><i class="bx bx-tachometer"></i></div>
+            <h4><a href="">Multiple Code-Compilers</a></h4>
+            <p>Code for mutiple languages can be run. Users can choose the coding langauge, provide input and run the code to see the compiled output.</p>
+          </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="400">
+          <div class="icon-box">
+            <div class="icon"><i class="bx bx-layer"></i></div>
+            <h4><a href="">Github Integration</a></h4>
+            <p>Allows organisations and groups to collaborate on github projects by assigning issues and discussing code collaboratively.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section><!-- End Services Section -->
+
+  <!-- ======= Cta Section ======= -->
+  <section id="cta" class="cta">
+    <div class="container" data-aos="zoom-in">
+
+      <div class="row">
+        <div class="col-lg-9 text-center text-lg-start">
+          <h3>Come Together to Colab!</h3>
+          <p> Sign up and start collaborating with others on your projects, Use our video call feature to communicate and brainstorm in real-time, Integrate your GitHub repositories to easily manage and track project progress.</p>
+        </div>
+        <div class="col-lg-3 cta-btn-container text-center">
+          <a class="cta-btn align-middle" href="#">Start Collaboration!</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- End Cta Section -->
+
+
+  <!-- ======= Frequently Asked Questions Section ======= -->
+  <section id="faq" class="faq section-bg">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title">
+        <h2>Frequently Asked Questions</h2>
+        <p>
+          Using this collaborative project application with video call and GitHub features is incredibly easy. The user-friendly interface makes it simple to create and join projects and invite collaborators. The video call feature provides a seamless way for teams to communicate and brainstorm in real-time, while the GitHub integration allows for streamlined code management and version control. 
+        </p>
+      </div>
+
+      <div class="faq-list">
+        <ul>
+          <li data-aos="fade-up" data-aos-delay="100">
+            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapse" data-bs-target="#faq-list-1">Can I use the video call feature to speak with multiple people at once? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+            <div id="faq-list-1" class="collapse show" data-bs-parent=".faq-list">
+              <p>
+               Yes, the video call feature can be used for talking and brain-storming with multiple people at the same time.
+              </p>
+            </div>
+          </li>
+
+          <li data-aos="fade-up" data-aos-delay="200">
+            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">How do I create or join a project on the platform?<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+            <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
+              <p>
+                New room can be joined using the room code. A different code id is created and is accessible to all members of the room.
+              </p>
+            </div>
+          </li>
+
+          <li data-aos="fade-up" data-aos-delay="300">
+            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-3" class="collapsed">Can I use the GitHub integration to assign issues in real-time? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+            <div id="faq-list-3" class="collapse" data-bs-parent=".faq-list">
+              <p>
+                With the name of organisation or repository and name of manager along with your personal access token, issues can be created and assigned to different Users.
+              </p>
+            </div>
+          </li>
+
+          <li data-aos="fade-up" data-aos-delay="400">
+            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-4" class="collapsed">Is there a code colaboration feature for writing and compiling code? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+            <div id="faq-list-4" class="collapse" data-bs-parent=".faq-list">
+              <p>
+                Yes the code colaboration feature is present, modificaitons in code are visible to all users, users can change appearence and language of code editor as well.
+              </p>
+            </div>
+          </li>
+
+          <li data-aos="fade-up" data-aos-delay="500">
+            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-5" class="collapsed">Can multiple coding languages be used with real-time code sharing? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+            <div id="faq-list-5" class="collapse" data-bs-parent=".faq-list">
+              <p>
+                Yes, different coding languages are available for running and compiling the code with displaying the output. The different coding languages available are Python, C, Java, Javascript, Ruby, Rust. Real time code colaboration is allowed as well.
+              </p>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+
+    </div>
+  </section><!-- End Frequently Asked Questions Section -->
+
+
+</main><!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<footer id="footer">
+
+  <!-- <div class="footer-newsletter">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <h4>Join Our Newsletter</h4>
+          <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+          <form action="" method="post">
+            <input type="email" name="email"><input type="submit" value="Subscribe">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-3 col-md-6 footer-contact">
+          <h3>Collab-Hub</h3>
+          <p>
+            System Practicum <br>
+            IIT Mandi<br>
+            India <br><br>
+            <!-- <strong>Phone:</strong> +1 5589 55488 55<br> -->
+            <!-- <strong>Email:</strong> info@example.com<br> -->
+          </p>
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+            <!-- <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li> -->
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Github Integration</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Project Management</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Video Conferencing</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Real time Code Testing</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Multiple Coding language Support</a></li>
+          </ul>
+        </div>
+
+        <!-- <div class="col-lg-3 col-md-6 footer-links">
+          <h4>Our Social Networks</h4>
+          <p>Collab-hub can </p>
+          <div class="social-links mt-3">
+            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+          </div>
+        </div> -->
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container footer-bottom clearfix">
+    <!-- <div class="copyright">
+      &copy; Copyright <strong><span>Arsha</span></strong>. All Rights Reserved
+    </div> -->
+    <div class="credits">
+      <!-- All the links in the footer should remain intact. -->
+      <!-- You can delete the links only if you purchased the pro version. -->
+      <!-- Licensing information: https://bootstrapmade.com/license/ -->
+      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/ -->
+      Designed by Group 17
+    </div>
+  </div>
+</footer><!-- End Footer -->
+
+<div id="preloader"></div>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="{% static 'lobby/vendor/aos/aos.js' %}"></script>
+<script src="{% static 'lobby/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'lobby/vendor/glightbox/js/glightbox.min.js' %}"></script>
+<script src="{% static 'lobby/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'lobby/vendor/swiper/swiper-bundle.min.js' %}"></script>
+<script src="{% static 'lobby/vendor/waypoints/noframework.waypoints.js' %}"></script>
+<script src="{% static 'lobby/vendor/php-email-form/validate.js' %}"></script>
+
+<!-- Template Main JS File -->
+<script src="{% static 'lobby/js/main.js' %}"></script>
+
+
+<script type="text/javascript">
+  let form = document.getElementById('form_lobby')
+
+  let handleSubmit = async (e) => {
+      e.preventDefault()
+      window.open('/lobby/', '_self')
+  }
+
+  form.addEventListener('submit', handleSubmit)
+</script>
+
+  </body>
+</html>
