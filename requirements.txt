@@ -119,7 +119,6 @@ jupyter-client==6.1.12
 jupyter-core==4.7.1
 jupyterlab-pygments==0.1.2
 jwcrypto==1.3
-k-means-constrained==0.7.2
 keras==2.10.0
 Keras-Preprocessing==1.1.2
 keyboard==0.13.5
