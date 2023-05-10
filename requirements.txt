@@ -1,6 +1,5 @@
 agora-token-builder
 asgiref
-certifi
 charset-normalizer
 dj-database-url
 Django

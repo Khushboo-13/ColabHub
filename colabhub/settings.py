@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'colabhub.wsgi.application'
 # }
 
 DATABASES={
-    "default":dj_database_url.parse("postgres://khushboo:jZ7mjI4ZZkiXDeHARn8QfkJcbVzHBtb4@dpg-chdkflqk728nnn7tnhrg-a/test_4qsn")
+    "default":dj_database_url.parse("postgres://khushboo:umI4Z9fNFfTmjdg6Z9WhZVI6bvLwN14B@dpg-chdlk367avj0dji0j8n0-a/test_vc9j")
 }
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
