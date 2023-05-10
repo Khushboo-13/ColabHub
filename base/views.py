@@ -128,6 +128,7 @@ def getMember(request):
 @csrf_exempt
 def deleteMember(request):
     data = json.loads(request.body)
+    # print(data['name'])
     member = RoomMember.objects.get(
         name=data['name'],
         uid=data['UID'],
@@ -207,11 +208,13 @@ def get_issue(request):
 
 @csrf_exempt
 def compile_code(request):
+    print("HELOO")
     data = json.loads(request.body)
     code = data['code']
     stdin = data['stdin']
     lang_id = data['language_id']
-
+    print("in code compiler")
+    
     url = "https://judge0-ce.p.rapidapi.com/submissions"
 
     querystring = {"base64_encoded":"false","fields":"*"}

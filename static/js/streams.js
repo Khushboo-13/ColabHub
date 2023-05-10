@@ -211,7 +211,7 @@ let displayGithubIssues = async () => {
         const form2 = document.getElementById("after-github-info");
 
         form1.addEventListener("submit", (e) => {
-            event.preventDefault(); // prevent default form submission behavior
+            e.preventDefault(); // prevent default form submission behavior
             // const name = document.getElementById("name").value;
             // const email = document.getElementById("email").value;
             let owner_name = e.target.owner_username.value
@@ -426,16 +426,6 @@ repo_form.addEventListener('submit', (e) => {
     repo_create_button.style.display = 'block';
 });
 
-// !function(d,s,id){
-//     var js,fjs=d.getElementsByTagName(s)[0];
-//     if(!d.getElementById(id)){
-//       js=d.createElement(s);
-//       js.id=id;
-//       js.src="https://lab.lepture.com/github-cards/widget.js";
-//       fjs.parentNode.insertBefore(js,fjs);
-//     }
-//   }(document,"script","github-cards-widget");
-
 //////////////////// COMPILE CODE AND SHOW OUTPUT //////////////////////
 
 let get_stdout = async (stdin, code) => {
@@ -457,7 +447,7 @@ let get_stdout = async (stdin, code) => {
 }
 
 const compileForm = document.getElementById('stdin');
-compileForm.addEventListener('submit', async (e) => {
+compileForm.addEventListener('submit',async (e) => {
 
     e.preventDefault();
     // var codeMirror = CodeMirror.fromTextArea(document.getElementById('firepad'), { 
@@ -466,14 +456,13 @@ compileForm.addEventListener('submit', async (e) => {
     //     mode: "javasript"});
 
     var code = firepad.getText()
-
+    
     console.log("code text:", code)
 
-    
-
     // create an issue when submit button clicked 
-    let stdin = e.target.stdin_in.value  
-
+    // let stdin = e.target.stdin_in.value  
+    let stdin = "hi"
+    console.log("stdin: ", stdin)
     // let stdout = await get_stdout(stdin, code)
 
     let response = await fetch('/compile_code/', {
