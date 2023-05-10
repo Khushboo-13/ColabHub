@@ -1,0 +1,361 @@
+{% extends 'base/main.html' %} 
+
+{% load static %}
+{% block content %}
+
+<style type="text/css" media="screen">
+
+  .editor-container{
+    /* width: 900px;
+    height: 540px;
+    margin: 20px auto; */
+    position: relative;
+    height: 540px;
+  }
+  #firepad { 
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+  }
+
+  a.powered-by-firepad{
+    display: none;
+  }
+
+  #user-github-wrapper{
+    height: 100px;
+    width: 100px;
+  }
+
+  #user-github-handles{
+    height: 85vh;
+    width: 75%;
+  }
+
+  .github-card{
+    height: 100%;
+  }
+
+
+/* ///////// */
+
+
+@import url(https://fonts.googleapis.com/css?family=Gloria+Hallelujah);
+
+#create, textarea  {
+  float:left;
+  padding:25px 25px 40px;
+  margin:0 20px 20px 0;
+  width:250px;
+  height:250px;
+}
+
+#create {
+  user-select:none;
+  padding:20px;
+  border-radius:20px;
+  text-align:center;
+  border:15px solid rgba(0,0,0,0.1);
+  cursor:pointer;
+  color:rgba(0,0,0,0.1);
+  font:220px "Helvetica", sans-serif;
+  line-height:185px;
+}
+
+#create:hover { border-color:rgba(0,0,0,0.2); color:rgba(0,0,0,0.2); }
+
+textarea {
+  font:20px 'Gloria Hallelujah', cursive;
+  line-height:1.5;
+  border:0;
+  border-radius:3px;
+  background: linear-gradient(#e0ecf8, #e0ecf8);
+  box-shadow:0 4px 6px rgba(0,0,0,0.1);
+  overflow:hidden;
+  transition:box-shadow 0.5s ease;
+  font-smoothing:subpixel-antialiased;
+  max-width:420px;
+  max-height:250px;
+}
+textarea:hover { box-shadow:0 5px 8px rgba(0,0,0,0.15); }
+textarea:focus { box-shadow:0 5px 12px rgba(0,0,0,0.2); outline:none; }
+
+
+
+</style>
+
+
+
+<div class="content-wrap">
+  <div class="main">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-lg-8 p-r-0 title-margin-right">
+                  <div class="page-header">
+                      <div class="page-title">
+                          <!-- <h1>Hello, <span>Welcome Here</span></h1> -->
+                          <!-- <section id="room-name-wrapper"> -->
+                            <h1>Room Name: <span id="room-name"></span></h1>
+                          <!-- </section> -->
+                      </div>
+                  </div>
+              </div>
+              
+          </div>
+          
+
+          
+              <div class="row">
+                  <div class="col-lg-8">
+                    <div class="row">
+                      <div class="col-lg-12">
+                    <div class="card">
+                      <div class="card-title">
+                          <h4>Todo List </h4>
+                          
+                      </div>
+                      <div class="todo-list">
+                          <div class="tdl-holder">
+                              <div class="tdl-content">
+                                  <ul>
+                                      <li><label><input type="checkbox"><i></i><span>Incomplete Task</span><a href='#' class="ti-close"></a></label></li>
+                                      <li><label><input type="checkbox" checked><i></i><span>Completed Task</span><a href='#' class="ti-close"></a></label></li>
+                                     
+                                  </ul>
+                              </div>
+                              <input type="text" class="tdl-new form-control" placeholder="Write new item and hit 'Enter'...">
+                          </div>
+                      </div>
+                  </div><!-- /# card -->
+                </div>
+              </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div>
+                      <textarea style="margin-left: 20px;">Add Notes!</textarea>
+                  
+                      <div id="create" style="margin-left: 20px;">+</div>
+                  </div>
+                  </div>
+                  </div>
+                  
+</div>
+
+                  <div class="col-lg-4">
+                      <div class="card">
+
+                          <div class="card-body">
+                              <!-- <div class="ct-pie-chart"></div> -->
+                              <section id="video-streams">
+
+                              </section>
+
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="card">
+                    <div class="card-title">
+                      <h4>Calendar</h4>
+                    </div>
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-lg-3">
+                          <a href="#" data-toggle="modal" data-target="#add-category" class="btn btn-lg btn-success btn-block waves-effect waves-light">
+                            <i class="fa fa-plus"></i> Create New
+                          </a>
+                          <div id="external-events" class="m-t-20">
+                            <br>
+                            <p>Drag and drop your event or click in the calendar</p>
+                            <div class="external-event bg-primary" data-class="bg-primary">
+                              <i class="fa fa-move"></i>New Theme Release
+                            </div>
+                            <div class="external-event bg-pink" data-class="bg-pink">
+                              <i class="fa fa-move"></i>My Event
+                            </div>
+                            <div class="external-event bg-warning" data-class="bg-warning">
+                              <i class="fa fa-move"></i>Meet manager
+                            </div>
+                            <div class="external-event bg-dark" data-class="bg-dark">
+                              <i class="fa fa-move"></i>Create New theme
+                            </div>
+                          </div>
+    
+                          <!-- checkbox -->
+                          <div class="checkbox m-t-40">
+                            <input id="drop-remove" type="checkbox">
+                            <label for="drop-remove">
+                              Remove after drop
+                            </label>
+                          </div>
+    
+                        </div>
+                        <div class="col-md-9">
+                          <div class="card-box">
+                            <div id="calendar"></div>
+                          </div>
+                        </div>
+                        <!-- end col -->
+                        <!-- BEGIN MODAL -->
+                        <div class="modal fade none-border" id="event-modal">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">
+                                  <strong>Add New Event</strong>
+                                </h4>
+                              </div>
+                              <div class="modal-body"></div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-success save-event waves-effect waves-light">Create event</button>
+                                <button type="button" class="btn btn-danger delete-event waves-effect waves-light" data-dismiss="modal">Delete</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+    
+                        <!-- Modal Add Category -->
+                        <div class="modal fade none-border" id="add-category">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">
+                                  <strong>Add a category </strong>
+                                </h4>
+                              </div>
+                              <div class="modal-body">
+                                <form>
+                                  <div class="row">
+                                    <div class="col-md-6">
+                                      <label class="control-label">Category Name</label>
+                                      <input class="form-control form-white" placeholder="Enter name" type="text" name="category-name" />
+                                    </div>
+                                    <div class="col-md-6">
+                                      <label class="control-label">Choose Category Color</label>
+                                      <select class="form-control form-white" data-placeholder="Choose a color..." name="category-color">
+                                        <option value="success">Success</option>
+                                        <option value="danger">Danger</option>
+                                        <option value="info">Info</option>
+                                        <option value="pink">Pink</option>
+                                        <option value="primary">Primary</option>
+                                        <option value="warning">Warning</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </form>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-danger waves-effect waves-light save-category" data-dismiss="modal">Save</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- END MODAL -->
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /# card -->
+                </div>
+                <!-- /# column -->
+              </div>
+              
+              <div class="row">
+                  <div class="col-lg-12">
+                      <div class="footer">
+                          <p>System Practicum <a href="#">Group 17</a></p>
+                      </div>
+                  </div>
+              </div>
+          
+      </div>
+  </div>
+</div>
+
+
+
+
+
+<main>
+
+
+
+
+  <!-- <div class="github-card" data-github="AvniMittal13" data-width="400" data-height="150" data-theme="default"></div> -->
+
+
+
+  <!-- <section id="video-streams"></section> -->
+
+  <section id="controls-wrapper">
+
+    <div class="icon-wrapper">
+      <img class="control-icon-my" id="mic-btn" src="{% static 'images/microphone.svg' %}" />
+    </div>
+
+    <div class="icon-wrapper">
+      <img class="control-icon-my" id="camera-btn" src="{% static 'images/video.svg' %}" />
+    </div>
+
+    <div class="icon-wrapper">
+      <img class="control-icon-my" id="leave-btn" src="{% static 'images/leave.svg' %}" />
+    </div>
+
+  </section>
+
+
+
+</section>
+  
+
+</main>
+
+
+ 
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+
+  
+<script type = "text/javascript" src = "{% static 'assets/AgoraRTC_N-4.17.2.js' %}"></script>
+<script type = "text/javascript" src = {% static 'js/streams.js' %}></script>
+
+<!-- <script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script> -->
+
+
+<script>
+  $("#create").click(function() {
+  $(this).before("<textarea></textarea>");
+});
+</script>
+
+
+
+
+<!-- -----------------ACE.JS CODE--------------------- -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.19.0/ace.js" ></script>
+<script>
+  let editor = document.querySelector("#editor")
+  ace.edit(editor, {
+    theme: 'ace/theme/cobalt'
+  })
+  // var editor = ace.edit("editor");
+  // editor.setTheme("ace/theme/monokai");
+  // editor.session.setMode("ace/mode/javascript");
+</script> -->
+<!-- ----------------ACE.JS CODE END------------------------------------ -->
+
+
+
+
+{% endblock content %}

@@ -45,6 +45,9 @@ def lobby(request):
 def github_issues(request):
     return render(request, 'base/github.html')
 
+def personal_page(request):
+    return render(request, 'base/personal_page.html')
+
 def room(request):
     # room_name = request.GET.get('room_name')
 

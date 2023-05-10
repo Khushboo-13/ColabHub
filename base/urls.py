@@ -16,5 +16,6 @@ urlpatterns = [
     path('get_issue/', views.get_issue),
     path('compile_code/', views.compile_code),
     path('create_repo/', views.create_repo_user),
-    path('github_issues/', views.github_issues, name = 'github')
+    path('github_issues/', views.github_issues, name = 'github'),
+    path('personal_page/', views.personal_page, name = 'personal')
 ]
