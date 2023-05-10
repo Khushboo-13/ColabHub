@@ -9,7 +9,7 @@
     height: 540px;
     margin: 20px auto; */
     position: relative;
-    height: 540px;
+    height: 500px;
   }
 
   #firepad {
@@ -133,7 +133,9 @@
                 </div>
               </div>
 
-              <select id="language-select" onchange="changeLanguage()">
+
+              <!-- <div class="dropdown" style="margin-top: 3px;"> -->
+              <select id="language-select" onchange="changeLanguage()" class="form-select" style="margin-top: 3px;">
                 <option value="python">Python</option>
                 <option value="java">Java</option>
                 <option value="ruby">Ruby</option>
@@ -141,15 +143,17 @@
                 <option value="clike">C</option>
                 <option value="Rust">Rust</option>
               </select>
+              <!-- </div> -->
 
-              <select id="theme-select" onchange="changeTheme()">
+              <!-- <div class="dropdown" style="margin-top: 3px;"></div> -->
+              <select id="theme-select" onchange="changeTheme()" class="form-select" style="margin-top: 3px;">
                 <option value="dracula">Dracula</option>
                 <option value="cobalt">Cobalt</option>
                 <option value="ambience">Ambience</option>
                 <option value="monokai">Monokai</option>
                 <option value="neo">Neo</option>
               </select>
-
+              <!-- </div> -->
 
 
               <!-- <div class="ct-bar-chart m-t-30"></div> -->
@@ -173,7 +177,7 @@
       <div class="row">
         <!-- <div id="stdin-input"></div> -->
         <div class="col-lg-4">
-          <div class="card">
+          <!-- <div class="card"> -->
             <div class="card-title">
               Input Text
             </div>
@@ -181,26 +185,27 @@
 
               <form id="stdin" method="post">
                 {% csrf_token %}
-                <textarea name="stdin_in" id="stdin_in" cols="20" rows="10" class="form-control"></textarea>
-                <input type="submit" value="submit">
+                <textarea name="stdin_in" id="stdin_in" cols="20" rows="10" class="form-control" style="height:200px;"></textarea>
+                <input type="submit" value="submit"   class="btn btn-primary btn-flat m-b-30 m-t-30" style="background-color: rgba(75,93,172,1);">
+              
               </form>
 
               <!-- </div> -->
             </div>
-          </div>
+          <!-- </div> -->
         </div>
 
         <div class="col-lg-4">
-          <div class="card">
+          <!-- <div class="card"> -->
             <div class="card-title">
               Code Output
             </div>
             <div class="card-body">
-              <textarea name="stdout" id="stdout" cols="20" rows="10" class="form-control"></textarea>
+              <textarea name="stdout" id="stdout" cols="20" rows="10" class="form-control" style="height:200px;"></textarea>
 
             </div>
 
-          </div>
+          <!-- </div> -->
         </div>
 
       </div>
