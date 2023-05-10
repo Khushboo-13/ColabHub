@@ -184,7 +184,6 @@ py==1.10.0
 pyarrow==9.0.0
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
-PyAudio @ file:///C:/Users/91787/pipwin/PyAudio-0.2.11-cp39-cp39-win_amd64.whl
 pyclustering==0.10.1.2
 pycodestyle==2.8.0
 pycparser==2.21
@@ -240,7 +239,6 @@ semver==2.13.0
 sentence-transformers==2.2.2
 sentencepiece==0.1.97
 service-identity==21.1.0
-Shapely @ file:///C:/Python/Python39/Shapely-1.7.1-cp39-cp39-win_amd64.whl
 six==1.16.0
 sklearn==0.0
 smart-open==5.2.1
