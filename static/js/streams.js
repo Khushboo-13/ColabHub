@@ -269,16 +269,22 @@ let display_data = (data) => {
         let ul = document.getElementById('repo_issues');
 
         // Create variable that will create li's to be added to ul
-        let li = document.createElement('li');
+        let li = document.createElement('tr');
         
         // Add Bootstrap list item class to each li
         // li.classList.add('list-group-item')
     
         // Create the html markup for each li
+        // li.innerHTML = (`
+        //     <p><strong>Title:</strong> ${data[i].title}</p>
+        //     <p><strong>User:</strong> ${data[i].user.login}</p>
+        //     <p><strong>URL:</strong> <a href="${data[i].html_url}">${data[i].html_url}</a></p>
+        // `);
+
         li.innerHTML = (`
-            <p><strong>Title:</strong> ${data[i].title}</p>
-            <p><strong>User:</strong> ${data[i].user.login}</p>
-            <p><strong>URL:</strong> <a href="${data[i].html_url}">${data[i].html_url}</a></p>
+            <td> ${data[i].title}</td>
+            <td> ${data[i].user.login}</td>
+            <td><a href="${data[i].html_url}">${data[i].html_url}</a></td>
         `);
         
         // Append each li to the ul

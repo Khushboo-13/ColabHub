@@ -42,6 +42,12 @@ def main_page(request):
 def lobby(request):
     return render(request, 'base/lobby.html')
 
+def github_issues(request):
+    return render(request, 'base/github.html')
+
+def personal_page(request):
+    return render(request, 'base/personal_page.html')
+
 def room(request):
     # room_name = request.GET.get('room_name')
 
