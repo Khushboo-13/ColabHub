@@ -257,6 +257,7 @@ def create_repo_user(request):
     repo_desc = data['body']
     private_bool = data['private']
 
+    print(private_bool)
     if(private_bool == "Yes"):
         private_bool = "true"
     else: 

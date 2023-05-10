@@ -9,12 +9,12 @@ let editor
 
 const client = AgoraRTC.createClient({mode:'rtc', codec:'vp8'})
 
+
 let localTracks = []
 let remoteUsers = {}
 
 let joinAndDisplayLocalStream = async () => {
     document.getElementById('room-name').innerText = CHANNEL
-
 
     client.on('user-published', handleUserJoined)
     client.on('user-left', handleUserLeft)
@@ -36,24 +36,7 @@ let joinAndDisplayLocalStream = async () => {
                   </div>`
     
     document.getElementById('video-streams').insertAdjacentHTML('beforeend', player)
-
-   
     localTracks[1].play(`user-${UID}`)
-
-    // var container = document.createElement('div');
-    // container.setAttribute('class', 'github-card');
-    // container.setAttribute('data-github', member.name);
-    // container.setAttribute('data-width', '400');
-    // container.setAttribute('data-height', '200');
-  
-    // // Add the container div to the HTML document
-    // document.body.appendChild(container);
-
-    user_github = `<div class="github-card" data-github=${member.name} data-width="400" data-height="150" data-theme="default"></div>`
-    document.getElementById('user-github-handles').insertAdjacentHTML('beforeend', user_github)
-    $('#user-github-handles').load(window.location.ref + " #user-github-handles")
-    // let response_check = await fetch(`/set_room_name/?room_name=${CHANNEL}`)
-    // users_check = await response_check.json()
     await client.publish([localTracks[0], localTracks[1]])
 }
 
@@ -75,17 +58,7 @@ let handleUserJoined = async (user, mediaType) => {
         </div>`
 
         document.getElementById('video-streams').insertAdjacentHTML('beforeend', player)
-
         user.videoTrack.play(`user-${user.uid}`)
-
-        user_github = `<div class="github-card" data-github=${member.name} data-width="400" data-height="150" data-theme="default"></div>`
-        document.getElementById('user-github-handles').insertAdjacentHTML('beforeend', user_github)
-        // $('#user-github-handles').load(document.URL + " #user-github-handles")
-        $('#user-github-handles').load(window.location.ref + " #user-github-handles")
-
-        // var scriptElement = document.createElement('script');
-        // scriptElement.src = '//cdn.jsdelivr.net/github-cards/latest/widget.js';
-        // document.head.appendChild(scriptElement);
     }
 
     if (mediaType === 'audio'){
