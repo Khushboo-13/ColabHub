@@ -97,7 +97,7 @@ body{
     flex-basis: 500px;
     flex-grow: 1;
     max-height: 10%;
-    min-height: 100px;
+    min-height: 9em;
     border: 1px solid rgb(75, 95, 172);
     border-radius: 5px;
     margin: 2px;
@@ -129,7 +129,7 @@ body{
 @media screen and (max-width:1650px) {
     .video-container{
         flex-basis: 300px;
-        min-height: 200px;
+        min-height: 9em;
     }
 }
 
