@@ -460,8 +460,8 @@ compileForm.addEventListener('submit',async (e) => {
     console.log("code text:", code)
 
     // create an issue when submit button clicked 
-    // let stdin = e.target.stdin_in.value  
-    let stdin = "hi"
+    let stdin = e.target.stdin_in.value  
+    // let stdin = "hi"
     console.log("stdin: ", stdin)
     // let stdout = await get_stdout(stdin, code)
 

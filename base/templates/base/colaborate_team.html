@@ -120,20 +120,20 @@
                     <!-- form 1 -->
                     <form id="github-issue-form" method="post">
                       {% csrf_token %}
-                      <div class="form-field ">
+                      <div class="form-field form-control">
                         <input type="text" name="owner_username" placeholder="Enter name of Owner..." />
                       </div>
 
-                      <div class="form-field ">
+                      <div class="form-field form-control">
                         <input type="text" name="repository_name" placeholder="Repository Name..." />
                       </div>
 
-                      <div class="form-field ">
+                      <div class="form-field form-control">
                         <input type="password" name="authorization_code"
                           placeholder="Enter Your Personal Access Token" />
                       </div>
 
-                      <div class="form-field ">
+                      <div class="form-field form-control">
                         <input type="submit" value="submit-github-info" class="btn btn-default" />
                       </div>
 
@@ -141,7 +141,7 @@
 
                     <!-- form 2 -->
                     <div id="after-github-info" style="display:none">
-                      <button id="create-issue-btn" class="btn btn-primary btn-block " style="background-color:rgba(75,93,172,1);">Create New Issue</button>
+                      <button id="create-issue-btn">Create New Issue</button>
 
                       <!-- <div id="create-issue-form" style="display: none;"> -->
 
@@ -179,7 +179,7 @@
 
 
                       <!-- <div id="create-repo-wrapper" style="display:none"> -->
-                      <button id="create-repo-btn" class="btn btn-primary btn-block " style="background-color:rgba(75,93,172,1); margin-top: 3px;" >Create New Repo</button>
+                      <button id="create-repo-btn">Create New Repo</button>
 
                       <!-- <div id="create-issue-form" style="display: none;"> -->
 
@@ -300,7 +300,7 @@
   <section id="controls-wrapper">
 
     <div class="icon-wrapper">
-      <img class="control-icon-my"  src="{% static 'images/microphone.svg' %}" />
+      <img class="control-icon-my" id="mic-btn" src="{% static 'images/microphone.svg' %}" />
     </div>
 
     <div class="icon-wrapper">
